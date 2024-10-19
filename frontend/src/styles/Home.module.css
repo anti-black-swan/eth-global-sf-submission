@@ -12,7 +12,15 @@
   align-items: center;
 }
 
-.footer {
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+/* .footer {
   display: flex;
   flex: 1;
   padding: 2rem 0;
@@ -99,4 +107,4 @@
     width: 100%;
     flex-direction: column;
   }
-}
+} */
