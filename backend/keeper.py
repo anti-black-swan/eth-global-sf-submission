@@ -102,20 +102,48 @@ def get_asks(black_swan_list):
     print(asks)
     return asks
     
-def place_order(token_id, ask_price, thresholded_size) :
-    # This function's arguments should now only take specific values from asks, not whole list
-    order_args = OrderArgs(
-        price=ask_price,
-        size=thresholded_size,
-        side=BUY,
-        token_id=token_id,
-    )
-    signed_order = client.create_order(order_args)
+# def place_order(token_id, ask_price, thresholded_size) :
+#     # This function's arguments should now only take specific values from asks, not whole list
+#     order_args = OrderArgs(
+#         price=ask_price,
+#         size=thresholded_size,
+#         side=BUY,
+#         token_id=token_id,
+#     )
+#     signed_order = client.create_order(order_args)
 
-    response = client.post_order(signed_order, OrderType.FOK)  # Does FOK count as MO?, trying to do this here
-    print(response.success)
+#     response = client.post_order(signed_order, OrderType.FOK)  # Does FOK count as MO?, trying to do this here
+#     print(response.success)
 
-    return response.success
+#     return response.success
+
+def place_order(token_id, ask_price, thresholded_size):
+    try:
+        # Create the order arguments
+        order_args = OrderArgs(
+            price=ask_price,
+            size=thresholded_size,
+            side=BUY,
+            token_id=token_id,
+        )
+        
+        # Create and sign the order
+        signed_order = client.create_order(order_args)
+
+        # Send the order and get the response
+        response = client.post_order(signed_order, OrderType.FOK)
+        
+        # Print the response success or error for debugging
+        print("Order Response:", response)
+        print("Order Success:", response.success)
+        
+        return response.success
+
+    except Exception as e:
+        # Print the error message for further debugging
+        print(f"Failed to place order: {e}")
+        return False
+
 
 
 
@@ -180,6 +208,12 @@ def place_live_orders():
             if order_success:
                 rem_threshold -= thresholded_size * ask_price
 
+def test_connection():
+    try:
+        response = client.get_markets(next_cursor="")
+        print("Connection successful. Markets response:", response)
+    except Exception as e:
+        print(f"Connection failed: {e}")
 
         
 
@@ -198,10 +232,10 @@ def main():
 
         # # Get reward-enabled markets
         # get_reward_markets()
-
+        # getBlackSwanEvents()
         place_live_orders()
-        # place_order()
-        getBlackSwanEvents()
+        # test_connection()
+        # place_order("88027839609243624193415614179328679602612916497045596227438675518749602824929", 0.001, 200)
     
    
 
