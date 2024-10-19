@@ -18,7 +18,9 @@ const Home: NextPage = () => {
       <div className={styles.header}>
           <ConnectButton />
       </div>
-      <DepositComponent />
+      <div className={styles.depositinput}>
+        <DepositComponent />
+      </div>
     </div>
   );
 };
