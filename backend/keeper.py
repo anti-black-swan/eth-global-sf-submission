@@ -10,6 +10,8 @@ from py_clob_client.clob_types import ApiCreds, OrderArgs, OrderType, BookParams
 
 # Global client variable
 client = None
+threshold = 10000 # Hard limit of $10,000 (for now)
+max_slippage = 0.01 # 1% max slippage
 
 # Initialize CLOB
 def initialize():
@@ -76,20 +78,21 @@ def get_market_spreads():
     print("Saved to spreads.json")
 
 
-def get_books():
+def get_asks(black_swan_list):
+
+    param_list = []
+    for token in black_swan_list:
+        param_list.append(BookParams(token_id=token))
 
     response = client.get_order_books(
-        params=[
-                BookParams(
-                    token_id="11015470973684177829729219287262166995141465048508201953575582100565462316088"
-                ),
-                BookParams(
-                    token_id="65444287174436666395099524416802980027579283433860283898747701594488689243696"
-                ),
-            ]
+            params=param_list
         )
-    # print(response[0])
-    # print(response)
+    
+    response_dict = [book.__dict__ for book in response]
+    with open('market_book.json', 'w') as json_file:
+        json.dump(response_dict, json_file, indent=4)  
+
+    print("Saved to market_book.json")
     asks = {}
     for book in response:
         asks[book.asset_id] = []
@@ -99,21 +102,20 @@ def get_books():
     print(asks)
     return asks
     
-def place_order() :
-    
-    asks = get_books()
-    for token, ask_list in asks.items():
-        order_args = OrderArgs(
-            price=ask_list[0][0],
-            size=100.0, #Add custom size based on conditions
-            side=BUY,
-            token_id=token,
-        )
-        signed_order = client.create_order(order_args)
+def place_order(token_id, ask_price, thresholded_size) :
+    # This function's arguments should now only take specific values from asks, not whole list
+    order_args = OrderArgs(
+        price=ask_price,
+        size=thresholded_size,
+        side=BUY,
+        token_id=token_id,
+    )
+    signed_order = client.create_order(order_args)
 
-        resp = client.post_order(signed_order)
-        print(resp)
-        print("Done!")
+    response = client.post_order(signed_order, OrderType.FOK)  # Does FOK count as MO?, trying to do this here
+    print(response.success)
+
+    return response.success
 
 
 
@@ -132,9 +134,55 @@ def getBlackSwanEvents() :
                 # print("-" * 40)
                 # print(token['token_id'])
                 print(event['rewards']['min_size'])
-                # black_swan_list[token['token_id']] = [token['price'], token['min_size']]
+                black_swan_list[token['token_id']] = [token['price'], event['rewards']['min_size']]
 
-        # return black_swan_list
+
+    with open('black_swan_events.json', 'w') as json_file:
+        json.dump(black_swan_list, json_file, indent=4)  
+
+    print("Saved to black_swan_events.json")    
+    return black_swan_list
+
+def calculate_slippage(current_price, initial_price):
+    # Calculate the slippage percentage between two price levels.
+    return abs((current_price - initial_price) / initial_price)
+
+
+def place_live_orders():
+    # Place orders until you run out of threshold
+
+    global max_slippage
+    global threshold
+
+    rem_threshold = threshold
+
+    while rem_threshold > 0:
+        black_swan_list = getBlackSwanEvents()
+        asks = get_asks(black_swan_list)
+
+        # Perform logic/checking here?
+        for token, ask_list in asks.items():
+
+            ask_list.sort(key=lambda x: x[0])  # Sort by price (ascending)
+
+            # For now get the last element directly which is the min price
+            ask_price  = asks[token][:-1][0][0]
+            size_available = asks[token][:-1][0][1]
+
+            # Check how many shares can be bought
+            if ask_price * size_available <= rem_threshold:
+                order_success = place_order(token, ask_price, size_available)
+            
+            else:
+                thresholded_size = rem_threshold/ask_price
+                order_success = place_order(token, ask_price, thresholded_size)
+            
+            if order_success:
+                rem_threshold -= thresholded_size * ask_price
+
+
+        
+
 
 # Main function that calls the other functions
 def main():
@@ -151,14 +199,8 @@ def main():
         # # Get reward-enabled markets
         # get_reward_markets()
 
-        # get_books()
-        place_order()
-        # create_order()
-#         print(
-#         client.get_price(
-#         token_id="106428415972306440805659798821565836957352710901932544423124141186478841559835", side="buy"
-#     )
-# )
+        place_live_orders()
+        # place_order()
         getBlackSwanEvents()
     
    
