@@ -38,7 +38,8 @@ const TransactionHistory = () => {
         setLoading(false);
       }
     };
-
+    // THIS WORKS BUT HASN'T BEEN CONFIGURED FOR userAddress parameter. Needs to be done.
+    // API endpoint "/api/dune-query" is where Connors code is
     fetchData();
   }, []);
 
