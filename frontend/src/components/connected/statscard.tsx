@@ -14,10 +14,6 @@ const StatsCard: React.FC<StatsCardProps> = ({ title, choice, chance }) => {
         <StatLabel>{title}</StatLabel>
         <StatHelpText>{choice}</StatHelpText>
         <StatNumber>{chance}%</StatNumber>
-        {/* <StatHelpText>
-          <StatArrow type={dayChange > 0 ? 'increase' : 'decrease'} />
-          {Math.abs(dayChange)}%
-        </StatHelpText> */}
       </Stat>
     </Card>
   );
