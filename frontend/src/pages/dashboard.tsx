@@ -18,7 +18,7 @@ import TransactionHistory from "../components/transhistory";
 const Dashboard: NextPage = () => {
   return (
     <>
-      <EarningsChart />
+      {/* <EarningsChart /> */}
       <div className="tx-table-container">
         <TransactionHistory />
       </div>
