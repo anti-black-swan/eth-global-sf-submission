@@ -10,7 +10,6 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 import { config } from '../wagmi';
 import MyNav from '../components/mynav';
-import Head from 'next/head';
 
 const client = new QueryClient();
 
