@@ -1,4 +1,4 @@
-import { TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td, Tfoot } from "@chakra-ui/react";
+import { TableContainer, Table, TableCaption, Thead, Tr, Th, Tbody, Td, Tfoot, Heading } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
 const TransactionHistory: React.FC = () => {
@@ -23,8 +23,9 @@ const TransactionHistory: React.FC = () => {
 
   return (
     <TableContainer>
+      <Heading>Recent Transactions</Heading>
       <Table variant="simple">
-        <TableCaption>Recent Transactions</TableCaption>
+        {/* <TableCaption>Recent Transactions</TableCaption> */}
         <Thead>
           <Tr>
             <Th>Hash</Th>
@@ -34,9 +35,9 @@ const TransactionHistory: React.FC = () => {
         </Thead>
         <Tbody>
             <Tr>
-              <Td></Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>25.4</Td>
+              <Td>{data && data[0].transaction_hash}</Td>
+              <Td>{data && data[0].block_time}</Td>
+              <Td>{data && data[0].eth_value}</Td>
             </Tr>
         </Tbody>
       </Table>
