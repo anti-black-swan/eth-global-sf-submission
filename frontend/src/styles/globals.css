@@ -14,3 +14,22 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+.tx-table-container {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+}
+
+#earnings-chart {
+  width: 50%; /* Width of the chart */
+}
