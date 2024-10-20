@@ -4,7 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 
 const EarningsChart: React.FC = () => {
   // Mock data for earnings over months
-  const earningsData = [1200, 1500, 1700, 1400, 2000, 2300, 2500, 3000, 2700, 2900, 3100, 3600];
+  const earningsData = [1200, 1500, 1700, 1400, 2000, 2300, 2500, 3000, 2700, 2900, 3100, 3600, 400];
   const months = [
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'

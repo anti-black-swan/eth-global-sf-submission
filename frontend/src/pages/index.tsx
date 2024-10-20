@@ -4,6 +4,8 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import DepositComponent from '../components/connected/deposit';
 import VaultStats from '../components/connected/stats';
+import TransactionHistory from '../components/connected/history';
+import EarningsChart from '../components/earnings_chart';
 
 const Home: NextPage = () => {
   return (
@@ -19,10 +21,12 @@ const Home: NextPage = () => {
       <div className={styles.header}>
           <ConnectButton />
       </div>
-      <div className={styles.depositinput}>
+      <EarningsChart />
+      {/* <div className={styles.depositinput}>
         <DepositComponent />
-      </div>
+      </div> */}
       <VaultStats />
+      <TransactionHistory />
     </div>
   );
 };
