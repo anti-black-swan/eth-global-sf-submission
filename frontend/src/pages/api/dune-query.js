@@ -19,7 +19,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "User address is required" });
   }
 
-  const flaskAppUrl = process.env.FLASK_APP_URL || "http://localhost:5051";
+  const flaskAppUrl =
+    process.env.FLASK_APP_URL || "https://dune-api.onrender.com";
   const url = `${flaskAppUrl}/query`;
 
   try {
