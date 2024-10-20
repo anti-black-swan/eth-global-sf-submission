@@ -16,9 +16,6 @@ const Home: NextPage = () => {
         />
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <div className={styles.header}>
-          <ConnectButton />
-      </div>
       <div className={styles.depositinput}>
         <DepositComponent />
       </div>
