@@ -18,22 +18,24 @@ const Home: NextPage = () => {
         <link href="/swan_icon.png" rel="icon" />
       </Head>
 
-      <div className={styles.definition}>
-        <Heading mb={1}>
-          black swan
-        </Heading>
-        <Heading size='md'>
-          /'blak 'swän/
-        </Heading>
-        <Heading size='sm'>
-          noun
-        </Heading>
-        <Text fontSize='xl'>
-          an unpredictable or unforeseen event
-        </Text>
-      </div>
+      
 
-      <div className={styles.banner} />
+      <div className={styles.banner} >
+        <div className={styles.definition}>
+          <Heading mb={1}>
+            black swan
+          </Heading>
+          <Heading size='md'>
+            /'blak 'swän/
+          </Heading>
+          <Heading size='sm'>
+            noun
+          </Heading>
+          <Text fontSize='xl'>
+            an unpredictable or unforeseen event
+          </Text>
+        </div>
+      </div>
 
       <VaultStats />
     </div>

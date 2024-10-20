@@ -44,6 +44,9 @@
   background-size: cover; /* Cover the container */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the background from repeating */
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .stats-container {
