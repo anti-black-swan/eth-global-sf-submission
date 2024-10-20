@@ -6,9 +6,10 @@ import styles from '../../styles/DepositComponent.module.css';
 const DepositComponent: React.FC = () => {
   const { isConnected, address } = useAccount();
 
-  function handleClick() {
-    console.log(1)
-  }
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
+
 
   return (
     <div>
@@ -21,7 +22,7 @@ const DepositComponent: React.FC = () => {
             <Input type='number' pr='4.5rem' placeholder='Enter amount' />
             <InputRightElement width='4.5rem'>
               <Button h='1.75rem' size='sm' onClick={handleClick}>
-                Hello
+                Purchase
               </Button>
             </InputRightElement>
           </InputGroup>
