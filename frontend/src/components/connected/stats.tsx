@@ -1,9 +1,11 @@
+// import styles from '../../styles/DepositComponent.module.css';
 // import React, { useEffect } from 'react';
 // import { Stat, StatArrow, StatGroup, StatHelpText, StatLabel, StatNumber } from '@chakra-ui/react';
 // import axios from 'axios';
 // import StatsCard from './statscard';
 // import { Button, Card } from 'react-bootstrap';
 // // import styles from '../../styles/DepositComponent.module.css';
+
 
 // const VaultStats: React.FC = () => {
 
@@ -84,6 +86,7 @@ const VaultStats: React.FC = () => {
               </Card.Body>
             </Card>
           </Col>
+
         ))}
       </Row>
     </div>

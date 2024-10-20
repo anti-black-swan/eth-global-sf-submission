@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ChakraProvider>      
       <WagmiProvider config={config}>
         <QueryClientProvider client={client}>
-          <RainbowKitProvider>
+          <RainbowKitProvider showRecentTransactions={true}>
             <MyNav />                
             <Component {...pageProps} />
             </RainbowKitProvider>

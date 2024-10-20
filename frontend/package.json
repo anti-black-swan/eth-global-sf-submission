@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.3",
+    "@duneanalytics/client-sdk": "^0.2.4",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@rainbow-me/rainbowkit": "^2.2.0",

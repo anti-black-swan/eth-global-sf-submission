@@ -15,4 +15,3 @@ const Deposit: NextPage = () => {
 }
 
 export default Deposit;
-

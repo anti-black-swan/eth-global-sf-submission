@@ -4,6 +4,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import DepositComponent from '../components/connected/deposit';
 import VaultStats from '../components/connected/stats';
+import { Heading, Text } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +17,24 @@ const Home: NextPage = () => {
         />
         <link href="/swan_icon.png" rel="icon" />
       </Head>
+
+      <div className={styles.definition}>
+        <Heading mb={1}>
+          black swan
+        </Heading>
+        <Heading size='md'>
+          /'blak 'swän/
+        </Heading>
+        <Heading size='sm'>
+          noun
+        </Heading>
+        <Text fontSize='xl'>
+          an unpredictable or unforeseen event
+        </Text>
+      </div>
+
       <div className={styles.banner} />
+
       <VaultStats />
     </div>
   );
