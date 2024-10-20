@@ -10,12 +10,13 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 
 import { config } from '../wagmi';
 import MyNav from '../components/mynav';
+import Head from 'next/head';
 
 const client = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (    
-    <ChakraProvider>
+    <ChakraProvider>      
       <WagmiProvider config={config}>
         <QueryClientProvider client={client}>
           <RainbowKitProvider>
