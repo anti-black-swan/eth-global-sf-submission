@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Stat, StatArrow, StatGroup, StatHelpText, StatLabel, StatNumber } from '@chakra-ui/react';
+import { StatGroup } from '@chakra-ui/react';
 import axios from 'axios';
 import StatsCard from './statscard';
 // import styles from '../../styles/DepositComponent.module.css';
@@ -26,9 +26,8 @@ const VaultStats: React.FC = () => {
 
   return (
     <div>
-      Top 3 Black Swan Events
       <StatGroup>
-      {events.map((event, index) => (
+        {events.map((event, index) => (
           <StatsCard
             key={index}
             title={event.title}

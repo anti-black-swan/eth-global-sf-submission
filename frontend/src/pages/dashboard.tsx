@@ -11,6 +11,7 @@ import {
   } from '@chakra-ui/react'
 import { NextPage } from 'next'
 import EarningsChart from '../components/earnings_chart';
+import TransactionHistory from '../components/transhistory';
 
 // Mock transaction data
 const transactions = [
@@ -24,27 +25,7 @@ const Dashboard: NextPage = () => {
         <>
         <EarningsChart/>
         <div className="tx-table-container">
-            <TableContainer className='tx-table'>
-            <Table variant='striped' colorScheme='gray' size='sm'>
-                <TableCaption>Transaction History</TableCaption>
-                <Thead>
-                <Tr>
-                    <Th>Amount</Th>
-                    <Th>Hash</Th>
-                    <Th isNumeric>Timestamp</Th>
-                </Tr>
-                </Thead>
-                <Tbody>
-                    {transactions.map((tx, index) => (
-                        <Tr key={index}>
-                        <Td>{tx.amount}</Td>
-                        <Td>{tx.hash}</Td>
-                        <Td isNumeric>{tx.timestamp}</Td>
-                        </Tr>
-                    ))}
-                </Tbody>        
-            </Table>
-        </TableContainer>
+            <TransactionHistory />
         </div>
         </>
     )
