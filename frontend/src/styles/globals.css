@@ -33,3 +33,37 @@ a {
 #earnings-chart {
   width: 50%; /* Width of the chart */
 }
+
+.home-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2%;
+}
+
+.stats-container p {
+  text-align: center; /* Center the text of the paragraph */
+  margin-bottom: 1rem; /* Optional: add some space below the paragraph */
+}
+
+.stat-card {
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Right and bottom shadow */
+  transition: box-shadow 0.3s ease; /* Optional: add a transition effect */
+}
+
+/* Optional: Add a hover effect */
+.stat-card:hover {
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.4); /* Darker shadow on hover */
+}
+
+.nav-brand {
+  display: flex;
+  
+}
